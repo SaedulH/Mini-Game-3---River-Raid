@@ -7,6 +7,7 @@ namespace AudioSystem
         readonly AudioManager audioManager;
         Transform parent;
         Vector3 position = Vector3.zero;
+        float volume;
         bool randomPitch;
         bool additivePitch;
         float newPitch;
@@ -55,6 +56,12 @@ namespace AudioSystem
             return this;
         }
 
+        public AudioBuilder WithVolume(float volume)
+        {
+            this.volume = volume;
+            return this;
+        }
+
         public AudioEmitter Play(AudioData audioData, bool retain = false)
         {
             if (audioData == null)
@@ -93,6 +100,11 @@ namespace AudioSystem
             if(reverb)
             {
                 audioEmitter.WithReverb();
+            }
+
+            if(volume > 0f)
+            {
+                audioEmitter.WithVolume(volume);
             }
 
             if (audioData.frequentSound)

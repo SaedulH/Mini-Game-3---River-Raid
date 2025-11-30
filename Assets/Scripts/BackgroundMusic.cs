@@ -1,19 +1,17 @@
-using UnityEngine;
+using AudioSystem;
+using Utilities;
 
-public class BackgroundMusic : MonoBehaviour
+public class BackgroundMusic : PersistentSingleton<BackgroundMusic>
 {
-    public AudioSource BGM;
-    void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-        BGM = GetComponent<AudioSource>();
-    }
+    public AudioData BGM;
+    private AudioEmitter _emitter;
 
     private void Start()
     {
-        if (!BGM.isPlaying)
-        {
-            BGM.Play();
-        }
+        _emitter = AudioManager.Instance.CreateAudioBuilder()
+            .WithLoop()
+            .WithVolume(0.1f)
+            .WithParent(transform)
+            .Play(BGM);
     }
 }

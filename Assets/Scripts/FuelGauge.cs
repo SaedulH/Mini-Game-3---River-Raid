@@ -5,6 +5,7 @@ public class FuelGauge : MonoBehaviour
     public static FuelGauge Instance;
     public bool _refueling = false;
     public float FuelUsageRate = 7f;
+    public float RefuelRate = 60f;
     private readonly float _tick = 1;
     private float _timer = 0;
     private RectTransform _rectTransform;
@@ -53,7 +54,7 @@ public class FuelGauge : MonoBehaviour
     {
         if (_rectTransform.anchoredPosition.x <= 200)
         {
-            _rectTransform.anchoredPosition += 40 * Time.deltaTime * Vector2.right;
+            _rectTransform.anchoredPosition += RefuelRate * Time.deltaTime * Vector2.right;
         }
     }
 

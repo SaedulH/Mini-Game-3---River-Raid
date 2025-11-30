@@ -133,7 +133,7 @@ public class PlayerManager : MonoBehaviour
             {
                 case ThrusterState.Fast:
                     SpeedAudioEmitter
-                        .WithPitch(SpeedAudio.pitch + 0.2f);
+                        .WithPitch(SpeedAudio.pitch + 0.1f);
                     //add particle effects here
                     break;
                 case ThrusterState.Normal:
@@ -143,7 +143,7 @@ public class PlayerManager : MonoBehaviour
                     break;
                 case ThrusterState.Slow:
                     SpeedAudioEmitter
-                        .WithPitch(SpeedAudio.pitch - 0.2f);
+                        .WithPitch(SpeedAudio.pitch - 0.1f);
                     //add particle effects here
                     break;
                 case ThrusterState.Off:

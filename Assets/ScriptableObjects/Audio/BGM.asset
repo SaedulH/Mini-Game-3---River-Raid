@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e2903a2dc04204ea61ca3618f39fc5, type: 3}
   m_Name: BGM
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: ca1ad58405e878f40aa42a175cd3621f, type: 3}
+  clip: {fileID: 8300000, guid: 0b25d24e1411cbd45a4df27b0de40c96, type: 3}
   mixerGroup: {fileID: 24300002, guid: 3c2e1a886d3b1304790b59a937b68c89, type: 2}
   loop: 1
   playOnAwake: 0
@@ -21,11 +21,11 @@ MonoBehaviour:
   bypassEffects: 0
   bypassListenerEffects: 0
   bypassReverbZones: 0
-  priority: 128
-  volume: 0.25
+  priority: 127
+  volume: 0.1
   pitch: 1
   panStereo: 0
-  spatialBlend: 1
+  spatialBlend: 0
   reverbZoneMix: 1
   dopplerLevel: 1
   spread: 0

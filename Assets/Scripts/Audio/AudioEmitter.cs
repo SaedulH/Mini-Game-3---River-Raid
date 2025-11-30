@@ -74,7 +74,10 @@ namespace AudioSystem
 
         public void Resume()
         {
-            audioSource.Play();
+            if(!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
 
         public void Pause()
@@ -123,6 +126,11 @@ namespace AudioSystem
         public void WithReverb(float min = -0.1f, float max = 0.1f)
         {
             audioSource.reverbZoneMix += Random.Range(min, max);
+        }
+
+        public void WithVolume(float volume)
+        {
+            audioSource.volume = volume;
         }
     }
 }

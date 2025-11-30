@@ -66,22 +66,6 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Level") && 
-    //        _isActive)
-    //    {
-    //        if (_timeSinceRotated > 0.5f)
-    //        {
-    //            float newDirection = EnemySpeed > 0 ? -180f : 0f;
-    //            //Debug.Log("Enemy hit wall, turning " + newDirection);
-    //            EnemyModel.transform.rotation = Quaternion.Euler(0f, newDirection, 0f);
-    //            EnemySpeed *= -1;
-    //            _timeSinceRotated = 0f;
-    //        }
-    //    }
-    //}
-
     public void DestroyEnemy()
     {
         _isActive = false;
