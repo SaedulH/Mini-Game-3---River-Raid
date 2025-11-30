@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3444980502895021150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8887344557862288154}
+  - component: {fileID: 1172360298677204880}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8887344557862288154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444980502895021150}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1172360298677204880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444980502895021150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea75fabc00d056479cb770836474d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemies:
+  - {fileID: 8486243492153123730, guid: 170dd9f2fbf82f940ab3fd3e91582beb, type: 3}
+  - {fileID: 2524146346368887558, guid: d4d546124b67a0946800fca1e2e5d7d1, type: 3}
+  Jet: {fileID: 2750757532201410841, guid: e9862d9279844394a8ff38d4ebc274e5, type: 3}
+  Fuel: {fileID: 8283372571163728820, guid: 9acdc5b2d0274344a883dd148e8d95f2, type: 3}
+  GameManager: {fileID: 0}
+  LevelsParent: {fileID: 0}
+  Player: {fileID: 0}
+  PlayerManager: {fileID: 0}
+  StartingFuelChance: 200
+  StartingSpawnChance: 125
+  FuelChance: 125
+  SpawnChance: 125
+  SpawnRange: 50
+  SpawnIntervals: 0
+  JetRate: 5
+  Distance: 0
+  levelnum: 0
+  MeshFilter: {fileID: 0}
+  CurrentMesh: {fileID: 0}
+  FirstStage: 1
