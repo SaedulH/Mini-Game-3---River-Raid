@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea75fabc00d056479cb770836474d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllActiveEnemies: []
   Enemies:
-  - {fileID: 8486243492153123730, guid: 170dd9f2fbf82f940ab3fd3e91582beb, type: 3}
-  - {fileID: 2524146346368887558, guid: d4d546124b67a0946800fca1e2e5d7d1, type: 3}
-  Jet: {fileID: 2750757532201410841, guid: e9862d9279844394a8ff38d4ebc274e5, type: 3}
-  Fuel: {fileID: 8283372571163728820, guid: 9acdc5b2d0274344a883dd148e8d95f2, type: 3}
+  - {fileID: 11400000, guid: 211989d54e701e141a0f59d113c4e961, type: 2}
+  - {fileID: 11400000, guid: 28213d3ebd2049445aaf32b454d6f092, type: 2}
+  Jet: {fileID: 11400000, guid: 6b270c3a32a063240b99b64e3dd4d25d, type: 2}
+  Fuel: {fileID: 11400000, guid: 25f39b3046b8f62408e67915fdc84c97, type: 2}
   GameManager: {fileID: 0}
   LevelsParent: {fileID: 0}
   Player: {fileID: 0}

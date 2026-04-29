@@ -1,8 +1,9 @@
-using System.Collections;
 using AudioSystem;
+using System.Collections;
 using UnityEngine;
+using Utilities;
 
-public class JetScript : MonoBehaviour
+public class JetScript : Flyweight
 {
     private bool _isActive = true;
     private bool _lookingRight = true;
@@ -24,7 +25,7 @@ public class JetScript : MonoBehaviour
         JetModel.SetActive(true);
     }
 
-    private void Start()
+    public void Initialise()
     {
         float side = transform.position.x;
         //If Jet on right side, flip it around to face left

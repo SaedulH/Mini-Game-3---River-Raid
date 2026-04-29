@@ -1,8 +1,9 @@
 using System.Collections;
 using AudioSystem;
 using UnityEngine;
+using Utilities;
 
-public class FuelScript : MonoBehaviour
+public class FuelScript : Flyweight
 {
     private bool _isActive = true;
     private Collider _collider;
@@ -12,7 +13,7 @@ public class FuelScript : MonoBehaviour
     public AudioData DestroyAudio;
     public ParticleSystem DestroyEffect;
 
-    void Start()
+    public void Initialise()
     {
         _isActive = true;
         _collider = GetComponent<Collider>();
@@ -37,7 +38,7 @@ public class FuelScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Rocket"))
         {
-            if (collision.gameObject.TryGetComponent<RaidRocketScript>(out RaidRocketScript rocket))
+            if (collision.gameObject.TryGetComponent(out Projectile rocket))
             {
                 rocket.DestroyRocket(); 
             }
@@ -61,7 +62,7 @@ public class FuelScript : MonoBehaviour
     {
         _isActive = false;
         PlayerManager.Instance.RemoveActiveFuelDepot(this.gameObject);
-        Destroy(this.gameObject);
+        FlyweightFactory.ReturnToPool(gameObject);
     }
 
     public IEnumerator OnDestroyEvent()
@@ -76,6 +77,6 @@ public class FuelScript : MonoBehaviour
         {
             yield return null;
         }
-        Destroy(gameObject);
+        FlyweightFactory.ReturnToPool(gameObject);
     }
 }

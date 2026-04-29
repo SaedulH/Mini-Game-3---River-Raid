@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using AudioSystem;
 using UnityEngine;
+using Utilities;
 
 public enum ThrusterState
 {
@@ -21,8 +22,8 @@ public class PlayerManager : MonoBehaviour
     private Animator _animator;
     private Collider _collider;
 
-    public GameObject RocketPrefab;
-    public bool RocketReady = true;
+    public FlyweightSettings Missile;
+    public bool MissileReady = true;
 
     public AudioData SpeedAudio;
     public AudioEmitter SpeedAudioEmitter;
@@ -79,9 +80,9 @@ public class PlayerManager : MonoBehaviour
 
             if ((Input.GetKey(KeyCode.Space) == true || Input.GetMouseButton(0) == true) && IsPlayerAlive)
             {
-                if (RocketReady)
+                if (MissileReady)
                 {
-                    StartCoroutine(FireRocket());
+                    StartCoroutine(FireMissile());
                 }
             }
         }
@@ -243,12 +244,15 @@ public class PlayerManager : MonoBehaviour
         PlayerModel.SetActive(false);
     }
 
-    IEnumerator FireRocket()
+    IEnumerator FireMissile()
     {
-        RocketReady = false;
-        Instantiate(RocketPrefab, transform.position + new Vector3(0, -0.5f, 3), Quaternion.identity);
+        MissileReady = false;
+        GameObject missile = FlyweightFactory.SpawnObject(Missile, transform.position + new Vector3(0, -0.5f, 3), Quaternion.identity);
+        Projectile projectile = missile.GetComponent<Projectile>();
+        projectile.Initialise();
+
         yield return new WaitForSeconds(0.4f);
-        RocketReady = true;
+        MissileReady = true;
     }
 
     public void ResetAtLevelStart(Vector3 position)

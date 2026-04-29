@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using Utilities;
 
 [RequireComponent(typeof(MeshFilter))]
 public class LevelGenerator : MonoBehaviour
@@ -34,9 +36,9 @@ public class LevelGenerator : MonoBehaviour
 
     public int Seed;
 
-    public GameObject[] Trees;
-    public GameObject LargeHouse;
-    public GameObject SmallHouse;
+    public FlyweightSettings[] Trees;
+    public FlyweightSettings LargeHouse;
+    public FlyweightSettings SmallHouse;
     public int TreeChance = 50;
     public int HouseChance = 50;
     public int SpawnRangeDistance = 10;
@@ -56,7 +58,7 @@ public class LevelGenerator : MonoBehaviour
 
         CreateShape();
         UpdateMesh();
-        GetValidGroundSpawnLocation();
+        StartCoroutine(GetValidGroundSpawnLocation());
     }
 
     private void OnValidate()
@@ -263,7 +265,7 @@ public class LevelGenerator : MonoBehaviour
         return y;
     }
 
-    public void GetValidGroundSpawnLocation()
+    public IEnumerator GetValidGroundSpawnLocation()
     {
         Vector3[] _newVertices = new Vector3[_vertices.Length];
         for (int i = 0; i < _vertices.Length; i++)
@@ -275,7 +277,6 @@ public class LevelGenerator : MonoBehaviour
         float groundLevel = Depth + 2;
         int currentSpawnRangeDistance = 0;
         Debug.Log($"newVertices size: {_newVertices.Length}, ground level: {groundLevel}");
-        //every 50units, spawn enemies from 25units to 75units away(50units)
         for (int i = 0; i < _newVertices.Length; i += 4)
         {
             if (_newVertices[i].y > groundLevel)
@@ -285,8 +286,8 @@ public class LevelGenerator : MonoBehaviour
                 if (5 == Random.Range(0, HouseChance) && currentSpawnRangeDistance <= 0 && IsGroundUnderneath(position))
                 {
                     int houseType = Random.Range(0, 2);
-                    GameObject houseToSpawn = (houseType == 0) ? LargeHouse : SmallHouse;
-                    Instantiate(houseToSpawn, position, Quaternion.identity, transform);
+                    FlyweightSettings houseToSpawn = (houseType == 0) ? LargeHouse : SmallHouse;
+                    FlyweightFactory.SpawnObject(houseToSpawn, position, Quaternion.identity);
                     spawnedHere = true;
                     spawnCount++;
                     currentSpawnRangeDistance = SpawnRangeDistance;
@@ -302,7 +303,7 @@ public class LevelGenerator : MonoBehaviour
 
                     if (5 == Random.Range(0, TreeChance) && currentSpawnRangeDistance <= 0 && IsGroundUnderneath(position))
                     {
-                        Instantiate(Trees[treeIndex], position, Quaternion.identity, transform);
+                        FlyweightFactory.SpawnObject(Trees[treeIndex], position, Quaternion.identity);
                         spawnCount++;
                         currentSpawnRangeDistance = SpawnRangeDistance;
                     }
@@ -313,6 +314,8 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
+
+        yield return null;
         Debug.Log($"Spawned {spawnCount} Trees and Houses");
     }
 

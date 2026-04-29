@@ -1,10 +1,11 @@
 using System.Collections;
 using AudioSystem;
 using UnityEngine;
+using Utilities;
 
-public class RaidRocketScript : MonoBehaviour
+public class Projectile : Flyweight
 {
-    public float RocketSpeed = 100;
+    public float Speed = 100;
     public float TravelDistance = 0;
     public float StartPosition;
     private Collider _collider;
@@ -18,10 +19,11 @@ public class RaidRocketScript : MonoBehaviour
     public ParticleSystem HitEffect;
 
     private bool _isTravelling = true;
-    // Start is called before the first frame update
-    void Start()
+
+    public void Initialise()
     {
         _collider = GetComponent<Collider>();
+        _collider.enabled = true;
         _isTravelling = true;
         RocketModel.SetActive(true);
         StartPosition = transform.position.z;
@@ -32,12 +34,11 @@ public class RaidRocketScript : MonoBehaviour
         TravelEffect.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!_isTravelling) return;
 
-        transform.Translate(RocketSpeed * Time.deltaTime * Vector3.forward);
+        transform.Translate(Speed * Time.deltaTime * Vector3.forward);
         TravelDistance = transform.position.z - StartPosition;
         if (TravelDistance >= 25)
         {
@@ -49,12 +50,12 @@ public class RaidRocketScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if(collision.gameObject.TryGetComponent<EnemyScript>(out EnemyScript enemy))
+            if(collision.gameObject.TryGetComponent(out EnemyScript enemy))
             {
                 enemy.DestroyEnemy();
                 GameManager.Instance.AddScore(100);
             }
-            else if (collision.gameObject.TryGetComponent<JetScript>(out JetScript jet))
+            else if (collision.gameObject.TryGetComponent(out JetScript jet))
             {
                 jet.DestroyJet();
                 GameManager.Instance.AddScore(150);
@@ -62,7 +63,7 @@ public class RaidRocketScript : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Bridge"))
         {
-            if (collision.gameObject.TryGetComponent<BridgeScript>(out BridgeScript bridge))
+            if (collision.gameObject.TryGetComponent(out BridgeScript bridge))
             {
                 bridge.DestroyBridge();
             }
@@ -97,6 +98,6 @@ public class RaidRocketScript : MonoBehaviour
         {
             yield return null;
         }
-        Destroy(gameObject);
+        FlyweightFactory.ReturnToPool(gameObject);
     }
 }

@@ -94,13 +94,13 @@ MonoBehaviour:
   MeshCollider: {fileID: 6550478840598915143}
   Seed: 0
   Trees:
-  - {fileID: 149218, guid: fc05c8bfad7df5a4abe568aca7403b9e, type: 3}
-  - {fileID: 104588, guid: 702740a5e4ac1ee40a1888d3b62faa91, type: 3}
-  - {fileID: 198980, guid: 55ca4401075700d46a23ae8179a79579, type: 3}
-  - {fileID: 116970, guid: 38ade0ba7c293f14a9b1b610879e9390, type: 3}
-  - {fileID: 147220, guid: 446fc4730aadcd04985c8dafaaf0c501, type: 3}
-  LargeHouse: {fileID: 94002108724216496, guid: 15f8cf47c46b014418b04da7515fce02, type: 3}
-  SmallHouse: {fileID: 1339466329267583319, guid: a69723514c4d2174ebaf21e391a419ac, type: 3}
+  - {fileID: 11400000, guid: d847c6e71a471454ab57ef613357cf7e, type: 2}
+  - {fileID: 11400000, guid: 917772eab55c85948b939a9f3d7514e8, type: 2}
+  - {fileID: 11400000, guid: af8dcb273d857534189f27aa1f5ea975, type: 2}
+  - {fileID: 11400000, guid: 47650fe324436cf428b385684c823f41, type: 2}
+  - {fileID: 11400000, guid: cbd98830bdeca8840aa38731299ec773, type: 2}
+  LargeHouse: {fileID: 11400000, guid: 2a9d50e1218c9084481e9835312c6399, type: 2}
+  SmallHouse: {fileID: 11400000, guid: a490915b63fdbfc499d45c4919be3e57, type: 2}
   TreeChance: 40
   HouseChance: 150
   SpawnRangeDistance: 12
@@ -132,6 +132,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -153,9 +155,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6550478840598915143
 MeshCollider:

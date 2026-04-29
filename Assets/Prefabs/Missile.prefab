@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1389620364672554549}
-  - component: {fileID: 6513243504614719081}
+  - component: {fileID: 5993635813438467541}
   - component: {fileID: 319191270385846137}
   - component: {fileID: 716320810029031044}
   m_Layer: 0
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 1647469522828083534}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6513243504614719081
+--- !u!114 &5993635813438467541
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,16 +46,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 262997828084004695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a5f47ba5bd205d46a15fb1a743b3a4c, type: 3}
+  m_Script: {fileID: 11500000, guid: e76307845751544489b03d500e3dde2f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  RocketSpeed: 100
+  m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  Settings: {fileID: 0}
+  Speed: 100
   TravelDistance: 0
   StartPosition: 0
   RocketModel: {fileID: 2132221747947314164}
   TravelAudio: {fileID: 11400000, guid: f1ae84eb0762ba74fa568afaa62d4c4b, type: 2}
   TravelEffect: {fileID: 1250084500564134761}
-  HitAudio: {fileID: 0}
+  HitAudio: {fileID: 11400000, guid: aa57dff5b4cb34148adf0db80800c4db, type: 2}
   HitEffect: {fileID: 7092958764990013233}
 --- !u!136 &319191270385846137
 CapsuleCollider:
@@ -87,10 +88,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262997828084004695}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
+  m_LinearDamping: 0
+  m_AngularDamping: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}

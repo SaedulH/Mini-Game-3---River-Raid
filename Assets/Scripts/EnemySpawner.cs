@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Utilities;
 
 public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance;
 
     public List<GameObject> AllActiveEnemies;
-    public GameObject[] Enemies;
-    public GameObject Jet;
-    public GameObject Fuel;
+    public FlyweightSettings[] Enemies;
+    public FlyweightSettings Jet;
+    public FlyweightSettings Fuel;
     public GameManager GameManager;
     public GameObject LevelsParent;
     public GameObject Player;
@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!_canSpawn)
+        if (!_canSpawn)
         {
             return;
         }
@@ -81,19 +81,19 @@ public class EnemySpawner : MonoBehaviour
 
     public void ClearAllActiveEnemies()
     {
-        if(AllActiveEnemies.Count > 0)
+        if (AllActiveEnemies.Count > 0)
         {
             for (int i = AllActiveEnemies.Count - 1; i >= 0; i--)
             {
-                if (AllActiveEnemies[i].TryGetComponent<EnemyScript>(out EnemyScript enemy))
+                if (AllActiveEnemies[i].TryGetComponent(out EnemyScript enemy))
                 {
                     StartCoroutine(enemy.OnDestroyEvent());
                 }
-                else if (AllActiveEnemies[i].TryGetComponent<JetScript>(out JetScript jet))
+                else if (AllActiveEnemies[i].TryGetComponent(out JetScript jet))
                 {
                     StartCoroutine(jet.OnDestroyEvent());
                 }
-                else if (AllActiveEnemies[i].TryGetComponent<FuelScript>(out FuelScript fuel))
+                else if (AllActiveEnemies[i].TryGetComponent(out FuelScript fuel))
                 {
                     StartCoroutine(fuel.OnDestroyEvent());
                 }
@@ -173,7 +173,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     if (5 == Random.Range(0, FuelChance) && fuelSpawnedOnThisRow < 3)
                     {
-                        Instantiate(Fuel, new Vector3(_newVertices[i].x, _newVertices[i].y + 2, _newVertices[i].z), Quaternion.identity, transform);
+                        StartCoroutine(SpawnFuelDepot(new Vector3(_newVertices[i].x, _newVertices[i].y + 2, _newVertices[i].z)));
+
                         fuelSpawnedOnThisRow++;
                         yield return new WaitForEndOfFrame();
                     }
@@ -192,9 +193,15 @@ public class EnemySpawner : MonoBehaviour
 
 
     [ContextMenu("SpawnEnemy")]
-    public void SpawnEnemy(GameObject enemy, Vector3 position)
+    public void SpawnEnemy(FlyweightSettings enemy, Vector3 position)
     {
-        GameObject enemyPrefab = Instantiate(enemy, position, Quaternion.identity, transform);
+        GameObject enemyPrefab = FlyweightFactory.SpawnObject(enemy, position, Quaternion.identity);
+        if (enemyPrefab.TryGetComponent(out EnemyScript enemyScript)) {
+            enemyScript.Initialise();
+        }
+        else if (enemyPrefab.TryGetComponent(out JetScript jetScript)) {
+            jetScript.Initialise();
+        }
         AllActiveEnemies.Add(enemyPrefab);
     }
 
@@ -210,7 +217,10 @@ public class EnemySpawner : MonoBehaviour
     [ContextMenu("SpawnFuelDepot")]
     public IEnumerator SpawnFuelDepot(Vector3 position)
     {
-        Instantiate(Fuel, position, Quaternion.identity, transform);
+        GameObject fuel = FlyweightFactory.SpawnObject(Fuel, position, Quaternion.identity);
+        FuelScript fuelScript = fuel.GetComponent<FuelScript>();
+        fuelScript.Initialise();
+
         yield return null;
     }
 

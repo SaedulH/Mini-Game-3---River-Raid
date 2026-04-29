@@ -1,8 +1,9 @@
 using System.Collections;
 using AudioSystem;
 using UnityEngine;
+using Utilities;
 
-public class EnemyScript : MonoBehaviour
+public class EnemyScript : Flyweight
 {
     public PlayerManager Player;
     private bool _isActive = true;
@@ -21,7 +22,7 @@ public class EnemyScript : MonoBehaviour
 
     private float _timeSinceRotated = 0f;
 
-    void Awake()
+    public void Initialise()
     {
         _isActive = true;
         _collider = GetComponent<Collider>();
@@ -90,7 +91,7 @@ public class EnemyScript : MonoBehaviour
             TravelAudioEmitter.Stop();
             TravelAudioEmitter = null;
         }
-        Destroy(this.gameObject);
+        FlyweightFactory.ReturnToPool(gameObject);
     }
 
     public IEnumerator OnDestroyEvent()
@@ -107,6 +108,6 @@ public class EnemyScript : MonoBehaviour
         {
             yield return null;
         }
-        Destroy(gameObject);
+        FlyweightFactory.ReturnToPool(gameObject);
     }
 }
