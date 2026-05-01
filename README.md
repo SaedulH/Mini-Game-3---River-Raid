@@ -13,7 +13,7 @@ Use WASD to navigate a jet through a procedurally generated river, avoid terrain
 Manage fuel by collecting it by hovering over fuel depots, running out of fuel will cost a life. Survive for as long as possible while difficulty increases over time. 
 
 Clone and build this project in Unity to Play:
-### 🔗 https://github.com/SaedulH/Mini-Game-3---River-Raid.git
+### `https://github.com/SaedulH/Mini-Game-3---River-Raid.git`
 
 <img src="./Assets/Gifs/RiverRaidGameplayGIF.gif" width="800"/> 
 
@@ -33,7 +33,7 @@ Clone and build this project in Unity to Play:
 - Maintaining visual clarity in a 2.5D perspective
 - Learning the full pipeline from model → texture → shader → engine
 
-## If I Revisited This Project
+## Future Considerations
 - Add biome variation (different river themes)
 - Improve procedural logic with weighted randomness or noise to create a more realistic river trend
 - Introduce enemy AI behaviors
